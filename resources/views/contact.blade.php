@@ -9,9 +9,6 @@
     <script src="main.js"></script>
 </head>
 <body>
-    <h1>SDC</h1>
-    <p>
-        <a href="/contact">Contact Us</a>
-    </p>
+    <h1>Contact Us</h1>
 </body>
 </html>
