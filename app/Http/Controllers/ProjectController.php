@@ -24,8 +24,15 @@ class ProjectController extends Controller
     }
 
     public function store(){
+        
+        // if it does not validate, it returns back
+        // validation rules
+        $attributes = request()->validate([
+            'title' => ['required','min:3', 'max:255'],
+            'description' => ['required','min:3']
+        ]);
 
-        Project::create(request(['title', 'description']));
+        Project::create($attributes);
         return redirect('/projects');
     }
 
