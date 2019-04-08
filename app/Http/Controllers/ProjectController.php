@@ -18,6 +18,10 @@ class ProjectController extends Controller
         return view ('projects.create');
     }
 
+    public function show(Project $project){
+
+    }
+
     public function store(){
         $project = new Project();
         $project->title = request('title');
@@ -26,4 +30,17 @@ class ProjectController extends Controller
 
         return redirect('/projects');
     }
+
+    public function edit(Project $project){
+
+    }
+
+    public function update(Project $project){
+
+    }
+
+    public function destroy(Project $project){
+
+    }
+
 }
