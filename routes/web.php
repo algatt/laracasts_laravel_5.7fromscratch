@@ -42,3 +42,5 @@ Route::resource('projects','ProjectController');
     or php artisan make:controller NameController -r -m ModelName (to include model)
    this will create boilerplate
 */
+
+Route::patch('/tasks/{task}','ProjectTasksController@update');

@@ -19,7 +19,15 @@
             <div class="row" style="margin:0px 0px 10px 20px;">
                 <div class="col-12">
                     @foreach ($project->tasks as $task)
-                        <li>{{$task->description}}</li>
+                        <div>
+                            <form method="POST" action="/tasks/{{$task->id}}">
+                                @method('PATCH')
+                                {{ csrf_field() }}
+                                <input class="form-check-input" type="checkbox" name="completed" onChange="this.form.submit()" 
+                                 {{$task->completed ? 'checked': '' }}>
+                                <label for="completed" class="form-check-label {{$task->completed ? 'is-complete': '' }}">{{$task->description}}</label>
+                            </form>
+                        </div>
                     @endforeach
                 </div>
             </div>
