@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-    <h1>Edit Project</h1>
+    <h1 class="title">Edit Project</h1>
     <form method="POST" action="/projects/{{$project->id}}">
         {{ method_field('PATCH')}}
         {{ csrf_field() }}

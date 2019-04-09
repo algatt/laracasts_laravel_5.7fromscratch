@@ -1,38 +1,50 @@
 @extends ('layout')
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <h1 class="title">{{$project->title}}</h1>
-            </div>
+    
+    <h1 class="title">{{$project->title}}</h1>
+     
+    <p>{{$project->description}}</p>
+    
+    <a href="/projects/{{$project->id}}/edit">Edit</a>
+      
+    @if ($project->tasks->count())
+        <div class="box" style="margin-top:20px;">
+            @foreach ($project->tasks as $task)
+                <div>
+                    <form method="POST" action="/tasks/{{$task->id}}">
+                    @method('PATCH')
+                    {{ csrf_field() }}
+                        <label for="completed" class="form-check-label {{$task->completed ? 'is-complete': '' }}">
+                            <input class="form-check-input" type="checkbox" name="completed" onChange="this.form.submit()" {{$task->completed ? 'checked': '' }}>
+                            {{$task->description}}
+                        </label>
+                    </form>
+                </div>
+            @endforeach
         </div>
-        <div class="row">
-            <div class="col-12">
-                <p>{{$project->description}}</p>
-                <a class="btn-link" href="/projects/{{$project->id}}/edit">Edit</a>
-            </div>
-        </div>
-
-        @if ($project->tasks->count())
-            <h4 style="margin-top:20px;"> Tasks </h4>
-            <div class="row" style="margin:0px 0px 10px 20px;">
-                <div class="col-12">
-                    @foreach ($project->tasks as $task)
-                        <div>
-                            <form method="POST" action="/tasks/{{$task->id}}">
-                                @method('PATCH')
-                                {{ csrf_field() }}
-                                <input class="form-check-input" type="checkbox" name="completed" onChange="this.form.submit()" 
-                                 {{$task->completed ? 'checked': '' }}>
-                                <label for="completed" class="form-check-label {{$task->completed ? 'is-complete': '' }}">{{$task->description}}</label>
-                            </form>
-                        </div>
-                    @endforeach
+    @endif
+    
+    <div class="box" >
+        <form method="POST" action="/projects/{{$project->id}}/tasks">
+            {{ csrf_field() }}
+            <div class="field">
+                <label class="label" for="description">New Task</label>
+                <div class="control">
+                    <input type="text" class="input" name="description" placeholder="Description" required>
                 </div>
             </div>
-        @endif
+
+            <div class="field">
+                <div class="control">
+                    <button type="submit" class="button is-link">Add Task</button>
+                </div>
+            </div>
+            @include ('errors')
+        </form>
     </div>
-   
+
+    
+    
    
 @endsection

@@ -43,4 +43,5 @@ Route::resource('projects','ProjectController');
    this will create boilerplate
 */
 
+Route::post('/projects/{project}/tasks','ProjectTasksController@store');
 Route::patch('/tasks/{task}','ProjectTasksController@update');

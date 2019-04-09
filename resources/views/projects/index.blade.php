@@ -2,8 +2,8 @@
 
 
 @section('content')
-    <h1>Projects</h1>
-    <table class="table table-striped">
+    <h1 class="title">My Projects</h1>
+    <table class="table is-fullwidth is-striped">
         <thead>
             <tr>
                 <th scope="col">Project</th>
