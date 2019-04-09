@@ -12,9 +12,11 @@
         <div class="box" style="margin-top:20px;">
             @foreach ($project->tasks as $task)
                 <div>
-                    <form method="POST" action="/tasks/{{$task->id}}">
-                    @method('PATCH')
-                    {{ csrf_field() }}
+                    <form method="POST" action="/completed-tasks/{{$task->id}}">
+                        @if ($task->completed)
+                            @method('DELETE')
+                        @endif
+                        {{ csrf_field() }}
                         <label for="completed" class="form-check-label {{$task->completed ? 'is-complete': '' }}">
                             <input class="form-check-input" type="checkbox" name="completed" onChange="this.form.submit()" {{$task->completed ? 'checked': '' }}>
                             {{$task->description}}

@@ -8,14 +8,7 @@ use App\Project;
 
 class ProjectTasksController extends Controller
 {
-    public function update(Task $task){
-
-        $method = request()->has('completed') ? 'completed' : 'incomplete';
-        $task -> $method();
-
-        return back();
-    }
-
+   
     public function store(Project $project){
         $attributes = request()->validate(['description'=>'required']);
         $project->addTask($attributes);
