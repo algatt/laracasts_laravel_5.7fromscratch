@@ -26,8 +26,10 @@ class ProjectController extends Controller
 
     // to change key item look for Route Key Binding
     public function show(Project $project){
+        $this->authorize('update',$project);
         return view ('projects.show', compact('project'));
     }
+
 
     public function store(){
         
@@ -49,11 +51,13 @@ class ProjectController extends Controller
     }
 
     public function update(Project $project){
+        $this->authorize('update',$project);
         $project->update(request(['title','description']));
         return redirect('/projects');
     }
 
     public function destroy(Project $project){
+        $this->authorize('update',$project);
         $project->delete();
         return redirect('/projects');   
     }
