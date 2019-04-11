@@ -8,7 +8,7 @@ class Project extends Model
 {
     // opposite of fillable is guarded (don't fill these fields)
     protected $fillable = [
-        'title', 'description'
+        'title', 'description', 'owner_id'
     ];
     
     // alternative to the previous

@@ -30,7 +30,7 @@
     </form>
         
      
-    @incude('errors')
+    @include('errors')
 
     </div>
     
