@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use \App\Project;
+use \App\Mail\ProjectCreated;
 
 class ProjectController extends Controller
 {
@@ -15,7 +16,8 @@ class ProjectController extends Controller
     }
 
     public function index(){
-        $projects = Project::all();
+
+        $projects = Project::where('owner_id', auth()->id())->get();
         
         return view ('projects.index', compact('projects'));
     }
@@ -42,7 +44,12 @@ class ProjectController extends Controller
 
         $attributes['owner_id'] = auth()->id();
 
-        Project::create($attributes);
+        $project = Project::create($attributes);
+
+        \Mail::to('alangatt@gmail.com')->send(
+            new ProjectCreated($project)
+        );
+
         return redirect('/projects');
     }
 

@@ -28,10 +28,7 @@ class AuthServiceProvider extends ServiceProvider
 
         // this will run before any policies
         // so if it returns true the policies won't be accessed
-        $gate->before(function ($user){
-            return $user->id == 2; // this is the admin id
-        });
-
+        
         //
     }
 }
