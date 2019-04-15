@@ -3,6 +3,9 @@
 
 @section('content')
     <h1 class="title">My Projects</h1>
+    @if (session('message'))
+        <p>{{session('message')}}</p>
+    @endif
     <table class="table is-fullwidth is-striped">
         <thead>
             <tr>

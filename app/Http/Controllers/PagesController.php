@@ -8,6 +8,8 @@ class PagesController extends Controller
 {
     public function home()
     {
+        //session(['name'=>'John']);
+        return(session('name'));
         return view('welcome', [
             'foo' => 'bar'
         ]);
